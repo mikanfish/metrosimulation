@@ -1,0 +1,103 @@
+/**********************************************************
+* Project 1: Metro Simulator
+* CS 15
+* README
+* Gabrielle Fischberg
+*********************************************************/
+
+Compile/run:
+     - Compile using
+            make MetroSim
+     - run executable with
+            ./MetroSim stationsFile passFile [commands]
+
+
+Program Purpose:
+     the purpose is to implement a Metro Simulaton of the green line
+     that can add passengers and move from station to station while
+     passengers enter and leave along the way 
+
+
+Acknowledgements: 
+https://thispointer.com/c-different-ways-to-iterate-over-a-list-of-objects/
+help for iterators 
+
+https://www.diffchecker.com/
+online diff checker 
+
+Files: 
+
+main.cpp:
+     handles simple driver functions such as reading in files and running loop
+
+Train.cpp:
+     Implementation of Train class.  Main functionality of running the Metro
+      Simulation, able to move trains and deal with passengers going on/off
+     the train.
+
+Train.h:
+     Interface of Train class.
+
+stations.txt:
+     an example file containing a list of stations.
+
+test_commands.txt:
+     sample list of commands that you could give to the simulator
+
+the_metroSim:
+     reference implementation for students to see how the program should 
+     handle all cases.
+
+Data Structures:
+I used a Queue to implement the PassengerQueue class and used std::list
+to implement the queue. A struct was used to implement the Passenger since. 
+Queues are linear data structures where elments are added at one end
+and removed from the other end. It follows the FIFO principle, so
+the first element to be added will be the first removed. A pro of queues is
+that the user can only access one side of the list. This is helpful because 
+it restricts users from traversing the list and only lets them 
+acess the elements that they need to from the interface. Furthermore,
+Queues are easy to implement and have efficient insertion and removal. 
+
+
+I used an array of PassengerQueues to implement the Train itself and an 
+std::list of PassengerQueues to implement the stations. The array was used
+so that the passengers on the train would be prined in order of which 
+they entered the train and also in the order they were exiting. Using an 
+array of PassengerQueues ensures that the passengers would remain sorted 
+on the train. Furthermore, arrays have O(1) access complexity, making it
+very easy to access whichever Passengers needed to leave the train at 
+a given stop. A list of PassengerQueues was used to represent the
+stations because the stations are in a set order. This makes sense
+since lists are lineardata structures that can dynamically change its 
+size. This is helpful because we do not know how many stations will be
+given to us before reading in the file. However, a con of using a list
+is that accessing elements is slower than using an array. You have 
+to traverse the whole list to find the element, so it is O(n) complexity.
+
+Testing:
+
+Unit tests were used to ensure the functions for PassengerQueue were 
+working correctly. I used stringstreams to test the printing functions.
+
+Unit testing was used moreso for the begining of this project before printing 
+functions were implmented. After printing was implemented, diffing was used
+to test functions. I used an online diff checker to compare outputs since it 
+was difficult to understand them from terminal. I also tested from my main.cpp 
+file, since I wasn't able to run a command loop from unit tests.
+This was to ensure my file inputs and ouputs were working correctly and whether
+the logic for my command loop was working. 
+Edge cases that were tested during implementation:
+- many passengers 
+- when train needs to loop around 
+- taking input from cin vs a file 
+- passengers getting off at the same stop
+- passengers getting on at the same stop
+
+
+Note: This assignment comes partially implemented, but student must also
+create the driver and add class functionality.
+
+Part that you found most difficult:
+I think adhereing to style is really difficult. Also figuring out edge 
+cases to test. 
